@@ -1,0 +1,24 @@
+.profile-card {
+    display: flex;
+    flex-direction: column;
+    max-width: fit-content;
+}
+
+mat-card-title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+mat-card-content {
+    padding: 24px;
+}
+
+mat-divider {
+    margin: 16px 0;
+}
+
+h3 {
+    font-size: 1.5rem;
+    margin-top: 16px;
+    margin-bottom: 8px;
+}

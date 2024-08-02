@@ -1,1 +1,101 @@
-<p>profile works!</p>
+<!-- src/app/features/profile/profile.component.html -->
+<mat-card class="profile-card">
+    <mat-card-header>
+      <mat-card-title>About {{companyProfile.name}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p>{{companyProfile.about}}</p>
+      
+      <mat-divider></mat-divider>
+      
+      <h3>Company Details</h3>
+      <mat-list>
+        <mat-list-item>
+          <span matListItemTitle>D-U-N-S</span>
+          <span matListItemLine>{{companyProfile.duns}}</span>
+        </mat-list-item>
+        <mat-list-item>
+          <span matListItemTitle>Year of Establishment</span>
+          <span matListItemLine>{{companyProfile.yearEstablished}}</span>
+        </mat-list-item>
+        <mat-list-item>
+          <span matListItemTitle>Address</span>
+          <span matListItemLine>{{companyProfile.address}}</span>
+        </mat-list-item>
+        <mat-list-item>
+          <span matListItemTitle>Nature of Business</span>
+          <span matListItemLine>{{companyProfile.businessNature}}</span>
+        </mat-list-item>
+        <mat-list-item>
+          <span matListItemTitle>Phone Number</span>
+          <span matListItemLine>{{companyProfile.phoneNumber}}</span>
+        </mat-list-item>
+        <mat-list-item>
+          <span matListItemTitle>Business Entity Type</span>
+          <span matListItemLine>{{companyProfile.entityType}}</span>
+        </mat-list-item>
+        <mat-list-item>
+          <span matListItemTitle>Legal Status</span>
+          <span matListItemLine>{{companyProfile.legalStatus}}</span>
+        </mat-list-item>
+        <mat-list-item>
+          <span matListItemTitle>Annual Revenue</span>
+          <span matListItemLine>{{companyProfile.annualRevenue}}</span>
+        </mat-list-item>
+      </mat-list>
+  
+      <mat-divider></mat-divider>
+  
+      <h3>Employees</h3>
+      <mat-list>
+        <mat-list-item>
+          <span matListItemTitle>Consolidated</span>
+          <span matListItemLine>{{companyProfile.employees.consolidated}}</span>
+        </mat-list-item>
+        <mat-list-item>
+          <span matListItemTitle>Individual</span>
+          <span matListItemLine>{{companyProfile.employees.individual}}</span>
+        </mat-list-item>
+      </mat-list>
+  
+      <mat-divider></mat-divider>
+  
+      <h3>Registration Numbers</h3>
+      <mat-list>
+        <mat-list-item>
+          <span matListItemTitle>Commercial And Government Entity Code</span>
+          <span matListItemLine>{{companyProfile.registrationNumbers.cageCode}}</span>
+        </mat-list-item>
+        <mat-list-item>
+          <span matListItemTitle>Federal Taxpayer Identification Number (US)</span>
+          <span matListItemLine>{{companyProfile.registrationNumbers.taxId}}</span>
+        </mat-list-item>
+        <mat-list-item>
+          <span matListItemTitle>Business Registration Number (US)</span>
+          <span matListItemLine>{{companyProfile.registrationNumbers.businessRegNumber}}</span>
+        </mat-list-item>
+        <mat-list-item>
+          <span matListItemTitle>US General Services Administration Unique Entity Identifier</span>
+          <span matListItemLine>{{companyProfile.registrationNumbers.gsaUniqueId}}</span>
+        </mat-list-item>
+      </mat-list>
+  
+      <mat-divider></mat-divider>
+  
+      <h3>Industry Codes</h3>
+      <mat-list>
+        <mat-list-item>
+          <span matListItemTitle>North American Industry Classification System 2022</span>
+          <span matListItemLine>{{companyProfile.industryCodes.naics2022}}</span>
+        </mat-list-item>
+        <mat-list-item>
+          <span matListItemTitle>NACE Revision 2</span>
+          <span matListItemLine>{{companyProfile.industryCodes.naceRev2}}</span>
+        </mat-list-item>
+        <mat-list-item>
+          <span matListItemTitle>US Standard Industry Code 1987 - 4 digit</span>
+          <span matListItemLine>{{companyProfile.industryCodes.sic1987}}</span>
+        </mat-list-item>
+      </mat-list>
+    </mat-card-content>
+</mat-card>

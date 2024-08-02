@@ -9,6 +9,11 @@ export const routes: Routes = [
         component: SidebarComponent, 
         children: [
             {
+                path: '',
+                redirectTo: 'profile',
+                pathMatch: 'full'
+            },
+            {
                 path: 'profile',
                 component: ProfileComponent
             },
