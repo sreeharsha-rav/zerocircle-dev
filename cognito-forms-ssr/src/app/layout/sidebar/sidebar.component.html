@@ -1,0 +1,21 @@
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav mode="side" opened="true" class="sidenav">
+        <p class="sidenav-title">My App</p>
+        <mat-nav-list>
+            <a mat-list-item [routerLink]="['/profile']" routerLinkActive="active-link">
+              <span matListItemTitle>Profile</span>
+            </a>
+            <a mat-list-item [routerLink]="['/finance']" routerLinkActive="active-link">
+              <span matListItemTitle>Finance</span>
+            </a>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <mat-toolbar>
+            <span>App Demo</span>
+        </mat-toolbar>
+      <div class="content">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>
