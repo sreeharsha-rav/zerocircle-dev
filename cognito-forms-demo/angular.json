@@ -29,9 +29,7 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": [
-              "node_modules/preline/preline.js"
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -94,5 +92,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }
