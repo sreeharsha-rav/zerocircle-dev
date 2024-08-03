@@ -1,32 +1,44 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
 
 interface LoanHistory {
   id: number;
-  type: string;
+  loanType: string;
   amount: number;
-  dateApplied: Date;
   status: string;
+  term?: string;
 }
 
 @Component({
   selector: 'app-loan-history',
   standalone: true,
-  imports: [MatTableModule],
+  imports: [MatTableModule, MatMenuModule, MatIconModule],
   templateUrl: './loan-history.component.html',
   styleUrl: './loan-history.component.css'
 })
 export class LoanHistoryComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'type', 'amount', 'dateApplied', 'status'];
+  displayedColumns: string[] = ['id', 'loanType', 'amount', 'status', 'term', 'actions'];
   loanHistory: LoanHistory[] = [];
 
-  ngOnInit(): void {
+  ngOnInit() {
     // Simulating data fetch
     this.loanHistory = [
-      { id: 1, type: 'Personal', amount: 5000, dateApplied: new Date(2023, 1, 15), status: 'Approved' },
-      { id: 2, type: 'Business', amount: 25000, dateApplied: new Date(2023, 3, 22), status: 'Denied' },
-      { id: 3, type: 'Mortgage', amount: 150000, dateApplied: new Date(2023, 6, 7), status: 'Approved' },
-      { id: 4, type: 'Personal', amount: 10000, dateApplied: new Date(2023, 8, 30), status: 'Pending' },
+      { id: 1, loanType: 'Green Bond Loan', amount: 1000000, status: 'Approved', term: '5 years' },
+      { id: 2, loanType: 'Sustainability Linked Loan', amount: 500000, status: 'Pending' },
+      { id: 3, loanType: 'SBA 504 Loan', amount: 3500000, status: 'Approved', term: '10 years' },
+      { id: 4, loanType: 'C-PACE Loan', amount: 750000, status: 'Approved', term: '20 years' },
     ];
+  }
+
+  editLoan(loan: LoanHistory) {
+    console.log('Edit loan:', loan);
+    // Implement edit logic here
+  }
+
+  deleteLoan(loan: LoanHistory) {
+    console.log('Delete loan:', loan);
+    // Implement delete logic here
   }
 }
