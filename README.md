@@ -3,7 +3,7 @@ A development repo for ZeroCircle internship.
 
 ## Projects
 
-- [`cognito-forms-demo`](./cognito-forms): A minimal demonstration of embedding cognito forms in an angular app.
+- [`cognito-forms-demo`](./cognito-forms/README.md): A minimal demonstration of embedding cognito forms in an angular app.
     - Roadmap:
         - [x] Implement CSR(Client-Side Rendering) of minimal zero-circle UI.
         - [x] Routing to match forms in ZeroCircle UI.
@@ -11,7 +11,7 @@ A development repo for ZeroCircle internship.
         - [ ] Fix visual bugs in embedded cognito forms.
         - [ ] Add SurveyJS POC (Proof of Concept) as a form alternative.
 
-- [`cognito-forms-ssr`](./cognito-forms-ssr): A minimal clone of zero-cirlce's cognito forms with server-side rendering.
+- [`cognito-forms-ssr`](./cognito-forms-ssr/README.md): A minimal clone of zero-cirlce's cognito forms with server-side rendering.
     - Roadmap:
         - [x] Minimal Clone the ZeroCircle UI
         - [x] Add server-side rendering.
