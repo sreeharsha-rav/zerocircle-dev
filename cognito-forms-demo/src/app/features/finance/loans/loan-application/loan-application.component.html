@@ -1,5 +1,7 @@
-<button mat-raised-button color="primary" (click)="onGoBack()">Go Back</button>
-<div class="loan-header">
-    <h3>{{loanType}}</h3>
+<div class="loan-application-container">
+    <button mat-raised-button color="primary" (click)="onGoBack()">Go Back</button>
+    <div class="loan-header">
+      <h3>{{loanType}} Application</h3>
+    </div>
+    <app-cognito-form [loanType]="loanType"></app-cognito-form>
 </div>
-<p>TODO: Render the loan application form here...</p>
