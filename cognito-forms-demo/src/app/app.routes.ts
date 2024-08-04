@@ -3,6 +3,7 @@ import { SidebarComponent } from './layout/sidebar/sidebar.component';
 import { ProfileComponent } from './features/profile/profile.component';
 import { FinanceComponent } from './features/finance/finance.component';
 import { LoansComponent } from './features/finance/loans/loans.component';
+import { LoanHistoryComponent } from './features/finance/loan-history/loan-history.component';
 
 export const routes: Routes = [
     { 
@@ -25,6 +26,10 @@ export const routes: Routes = [
                     {
                         path: 'home',
                         component: LoansComponent
+                    },
+                    {
+                        path: 'history',
+                        component: LoanHistoryComponent
                     }
                 ]
             }
