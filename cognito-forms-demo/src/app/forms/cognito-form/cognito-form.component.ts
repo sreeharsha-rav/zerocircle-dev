@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, Renderer2, ViewChild, ElementRef, SimpleChanges } from '@angular/core';
+import { Component, Input, OnInit, Renderer2, ViewChild, ElementRef, NgZone, OnDestroy } from '@angular/core';
 
 /**
  * Represents the CognitoFormComponent class.
@@ -14,10 +14,12 @@ import { Component, Input, OnChanges, OnInit, Renderer2, ViewChild, ElementRef, 
     `,
   styles: []
 })
-export class CognitoFormComponent implements OnInit, OnChanges {
+export class CognitoFormComponent implements OnInit, OnDestroy {
   @Input() loanType: string = '';
   @ViewChild('formContainer', { static: true }) formContainer!: ElementRef;
-  scriptElement!: HTMLScriptElement;
+
+  private observer: MutationObserver | null = null;
+  private formData: {[key: string]: string} = {};
   
   /**
    * Creates an instance of CognitoFormComponent.
@@ -25,6 +27,7 @@ export class CognitoFormComponent implements OnInit, OnChanges {
    */
   constructor(
     private renderer: Renderer2,
+    private ngZone: NgZone
   ) { }
 
   /**
@@ -33,17 +36,11 @@ export class CognitoFormComponent implements OnInit, OnChanges {
    */
   ngOnInit() {
     this.loadCognitoFormScript();
+    this.setupPersistentObserver();
   }
 
-  /**
-   * Lifecycle hook that is called when any data-bound property of the component changes.
-   * @param changes - The SimpleChanges object containing the changed properties of the component.
-   * It reloads the Cognito Forms script.
-   */
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['loanType'] && !changes['loanType'].firstChange) {
-      this.loadCognitoFormScript();
-    }
+  ngOnDestroy() {
+    this.cleanupListeners();
   }
 
   /**
@@ -56,6 +53,72 @@ export class CognitoFormComponent implements OnInit, OnChanges {
     scriptElement.setAttribute('data-key', '01huc4Jc0EmOkLmxC9tZnA');  // TODO: Load in env
     scriptElement.setAttribute('data-form', '6');                      // TODO: Load in env
     this.renderer.appendChild(this.formContainer.nativeElement, scriptElement);
+    console.log('Cognito Forms script loaded');
+  }
+
+  private setupPersistentObserver() {
+    this.observer = new MutationObserver((mutations) => {
+      for (const mutation of mutations) {
+        if (mutation.type === 'childList') {
+          this.ngZone.run(() => {
+            this.handleDOMChanges();
+          });
+        }
+      }
+    });
+
+    this.observer.observe(this.formContainer.nativeElement, { 
+      childList: true, 
+      subtree: true,
+      attributes: true,
+      characterData: true
+    });
+  }
+
+  private handleDOMChanges() {
+    const form = this.formContainer.nativeElement.querySelector('form');
+    if (form) {
+      this.setupFormListeners(form);
+    }
+  }
+
+  private setupFormListeners(form: HTMLFormElement) {
+    // Remove existing listeners to avoid duplicates
+    form.removeEventListener('submit', this.handleSubmit);
+    form.querySelectorAll('input, select, textarea').forEach(element => {
+      element.removeEventListener('input', this.handleInputChange);
+    });
+
+    // Add new listeners
+    form.addEventListener('submit', this.handleSubmit.bind(this));
+    form.querySelectorAll('input, select, textarea').forEach(element => {
+      element.addEventListener('input', this.handleInputChange.bind(this));
+    });
+  }
+
+  private handleInputChange = (event: Event) => {
+    const target = event.target as HTMLInputElement;
+    this.formData[target.name] = target.value;
+    console.log('Form data updated:', this.formData);
+  }
+
+  private handleSubmit = (event: Event) => {
+    event.preventDefault();
+    console.log('Form submitted with data:', this.formData);
+    // Here you can send the formData to your backend or perform any other action
+  }
+
+  private cleanupListeners() {
+    if (this.observer) {
+      this.observer.disconnect();
+    }
+    const form = this.formContainer.nativeElement.querySelector('form');
+    if (form) {
+      form.removeEventListener('submit', this.handleSubmit);
+      form.querySelectorAll('input, select, textarea').forEach((element: any) => {
+        element.removeEventListener('input', this.handleInputChange);
+      });
+    }
   }
 
 }
