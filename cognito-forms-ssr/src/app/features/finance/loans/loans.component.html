@@ -8,7 +8,9 @@
           <p>{{loan.description}}</p>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-flat-button color="primary">Select</button>
+          <a mat-flat-button color="primary" [routerLink]="['../loan-application']" [queryParams]="{type: loan.type}">
+            Apply
+          </a>
         </mat-card-actions>
       </mat-card>
     }
