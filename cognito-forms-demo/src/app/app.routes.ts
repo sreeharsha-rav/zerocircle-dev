@@ -4,6 +4,7 @@ import { ProfileComponent } from './features/profile/profile.component';
 import { FinanceComponent } from './features/finance/finance.component';
 import { LoansComponent } from './features/finance/loans/loans.component';
 import { LoanHistoryComponent } from './features/finance/loan-history/loan-history.component';
+import { LoanApplicationComponent } from './features/finance/loans/loan-application/loan-application.component';
 
 export const routes: Routes = [
     { 
@@ -30,6 +31,10 @@ export const routes: Routes = [
                     {
                         path: 'history',
                         component: LoanHistoryComponent
+                    },
+                    {
+                        path: 'loan-application',
+                        component: LoanApplicationComponent
                     }
                 ]
             }
