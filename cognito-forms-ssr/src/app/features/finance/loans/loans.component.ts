@@ -49,4 +49,5 @@ export class LoansComponent {
     }
   ];
 
+  // Maybe use function router instead of RouterLink
 }
