@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, PLATFORM_ID, Input, ElementRef } from '@angular/core';
+import { Component, OnInit, Inject, PLATFORM_ID, Input, ElementRef, OnDestroy, EventEmitter, Output } from '@angular/core';
 import { ScriptLoaderService } from '../services/script-loader/script-loader.service';
 import { isPlatformBrowser } from '@angular/common';
 
@@ -9,8 +9,11 @@ import { isPlatformBrowser } from '@angular/common';
   template: ``,
   styles: ``
 })
-export class CognitoFormComponent implements OnInit {
+export class CognitoFormComponent implements OnInit, OnDestroy {
   @Input() container!: ElementRef;
+  @Output() formDataChanged = new EventEmitter<any>();
+
+  private formEventListener: any;
 
   constructor(
     private scriptLoader: ScriptLoaderService,
@@ -32,7 +35,7 @@ export class CognitoFormComponent implements OnInit {
         'https://www.cognitoforms.com/f/seamless.js', 
         {
           'data-key': '01huc4Jc0EmOkLmxC9tZnA',
-          'data-form': '2'
+          'data-form': '6'
         },
         this.container.nativeElement
       );
@@ -43,6 +46,22 @@ export class CognitoFormComponent implements OnInit {
 
     } catch (error) {
       console.error('Failed to load Cognito Forms script.', error);
+    }
+  }
+
+  setupFormEventListener() {
+    this.formEventListener = (event: any) => {
+      if (event.detail && event.detail.data) {
+        this.formDataChanged.emit(event.detail.data);
+      }
+    };
+
+    window.addEventListener('CognitoFormChanged', this.formEventListener);
+  }
+
+  ngOnDestroy() {
+    if (this.formEventListener) {
+      window.removeEventListener('CognitoFormChanged', this.formEventListener);
     }
   }
 

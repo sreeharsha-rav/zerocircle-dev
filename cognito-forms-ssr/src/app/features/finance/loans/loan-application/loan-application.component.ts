@@ -16,7 +16,10 @@ import { CognitoFormComponent } from "../../cognito-form/cognito-form.component"
       <h3>{{loanType}}</h3>
     </div>
     <div #formContainer></div>
-    <app-cognito-form [container]="formContainerRef"></app-cognito-form>
+    <app-cognito-form 
+      [container]="formContainerRef"
+      (formDataChanged)="onFormDataChanged($event)"
+      ></app-cognito-form>
   `,
   styles: [`
     .loan-header {
@@ -53,6 +56,11 @@ export class LoanApplicationComponent implements OnInit, AfterViewInit {
 
   onGoBack() {
     this.router.navigate(['/finance/home']);
+  }
+
+  onFormDataChanged(formData: any) {
+    console.log('Form data changed:', formData);
+    // Here you can update your component's state, send data to a service, etc.
   }
 
 }
