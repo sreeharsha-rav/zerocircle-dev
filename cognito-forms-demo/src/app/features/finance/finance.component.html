@@ -1,13 +1,21 @@
-@if ((asyncTabs | async) === null) {
-    Loading tabs...
-}
-  
-<mat-tab-group dynamicHeight>
-    @for (tab of asyncTabs | async; track tab) {
-        <mat-tab>
-        <ng-template mat-tab-label>{{tab.label}}</ng-template>
-            {{tab.content}}
-        </mat-tab>
+<nav 
+    mat-tab-nav-bar 
+    mat-stretch-tabs="false"
+    mat-align-tabs="start"
+    [tabPanel]="tabPanel"
+>   
+    @for (link of navLinks; track link) {
+        <a 
+            mat-tab-link
+            [routerLink]="link.path" 
+            routerLinkActive #rla="routerLinkActive" 
+            [active]="rla.isActive"
+        >
+            {{link.label}}
+        </a>
     }
-</mat-tab-group>
+</nav>
+<mat-tab-nav-panel #tabPanel>
+    <router-outlet></router-outlet>
+</mat-tab-nav-panel>
   

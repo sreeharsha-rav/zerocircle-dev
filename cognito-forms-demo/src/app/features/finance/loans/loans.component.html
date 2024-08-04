@@ -1,0 +1,17 @@
+<div class="loans-wrapper">
+    @for (loan of loans; track loan.id) {
+      <mat-card class="loan-card">
+        <mat-card-header>
+          <mat-card-title>{{loan.type}} Loan</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>{{loan.description}}</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <a mat-flat-button color="primary" [routerLink]="['../loan-application']" [queryParams]="{type: loan.type}">
+            Apply
+          </a>
+        </mat-card-actions>
+      </mat-card>
+    }
+</div>
