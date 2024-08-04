@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -7,12 +7,11 @@ import { Router, ActivatedRoute } from '@angular/router';
   standalone: true,
   imports: [
     MatButtonModule
-  ],
+],
   templateUrl: './loan-application.component.html',
   styleUrl: './loan-application.component.css'
 })
-export class LoanApplicationComponent implements OnInit, AfterViewInit {
-  @ViewChild('formContainer', { static: true }) formContainerRef!: ElementRef;
+export class LoanApplicationComponent implements OnInit {
   loanType: string = '';
 
   constructor(
@@ -27,16 +26,7 @@ export class LoanApplicationComponent implements OnInit, AfterViewInit {
     });
   }
 
-  ngAfterViewInit(): void {
-    // TODO: Pass the loan type to the form component
-  }
-
   onGoBack() {
     this.router.navigate(['/finance/home']);
-  }
-
-  onFormDataChanged(formData: any) {
-    console.log('Form data changed:', formData);
-    // Here you can update your component's state, send data to a service, etc.
   }
 }
