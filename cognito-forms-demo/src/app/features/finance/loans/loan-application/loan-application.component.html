@@ -3,5 +3,11 @@
     <div class="loan-header">
       <h3>{{loanType}} Application</h3>
     </div>
-    <app-cognito-form [loanType]="loanType"></app-cognito-form>
+
+    <!-- Cognito Form Render -->
+    <!-- <app-cognito-form [loanType]="loanType"></app-cognito-form> -->
+
+    <!-- SurveyJS Form Render -->
+    <app-surveyjs-form [loanType]="loanType"></app-surveyjs-form>
+
 </div>

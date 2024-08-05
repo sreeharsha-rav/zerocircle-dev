@@ -2,13 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CognitoFormComponent } from '../../../../forms/cognito-form/cognito-form.component';
+import { SurveyjsFormComponent } from '../../../../forms/surveyjs-form/surveyjs-form.component';
 
 @Component({
   selector: 'app-loan-application',
   standalone: true,
   imports: [
     MatButtonModule,
-    CognitoFormComponent
+    CognitoFormComponent,
+    SurveyjsFormComponent
 ],
   templateUrl: './loan-application.component.html',
   styleUrl: './loan-application.component.css'
