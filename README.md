@@ -9,9 +9,9 @@ A development repo for ZeroCircle internship.
         - [x] Routing to match forms in ZeroCircle UI.
         - [x] Embed cognito forms demo in the app.
         - [x] Fix visual bugs in embedded cognito forms.
-        - [ ] Read user input from cognito forms.
+        - [x] Read user input from cognito forms.
         - [ ] Store user input in as a session storage.
-        - [ ] Add SurveyJS POC (Proof of Concept) as a form alternative.
+        - [x] Add SurveyJS POC (Proof of Concept) as a form alternative.
 
 - [`cognito-forms-ssr`](./cognito-forms-ssr/README.md): A minimal clone of zero-cirlce's cognito forms with server-side rendering.
     - Roadmap:
