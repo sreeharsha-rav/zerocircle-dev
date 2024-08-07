@@ -10,7 +10,7 @@ A simple minimal ZeroCircle UI with cognito forms embedded in an angular app. CS
 - [x] Fix visual bugs in embedded cognito forms.
 - [x] Read user input from cognito forms -> Used MutationObserver to read user input and log it to the console.
 - [ ] Store user input in as a session storage.
-- [ ] Add SurveyJS POC (Proof of Concept) as a form alternative.
+- [x] Add SurveyJS POC (Proof of Concept) as a form alternative.
 
 ## Project Structure
 
